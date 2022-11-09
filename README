@@ -1,2 +1,429 @@
-#proyecto coder 
-este proyecto lo desarrollamos en clase 44470
+# proyecto coder
+#este proyecto lo desarrollamos en clase 44470 
+# DJANGO
+#python orientado al desarrollo web
+#Un paquete que nos va a definir una estructura de proyecto, para desarrollar proyectos web, con una estructura, carpetas, config
+#todo se organiza de una forma muy particular
+#nos ofrece funciones para desarrollar de forma rapida una web
+#ANTES
+#Una arquitectura nos permite tener una organizacion en el codigo
+#MVC, tu software lo tenes que organizar en tres partes:
+#Modelo: todas las funcione, objetos, clases, que se encarga de trabajar con los datos en la base de datos, traer devolver o guardarlos.
+#parte especifica de softwar q trabaja con datos
+# Controlador: contiene toda la logica.
+# Vista: funciones, clases, para presentar al usuario, lo q va a ver el usuario
+# EL USUARIO QUIERE VER FOTOS DE MESSI, LE SOLICITA AL CONTROLADOR, EL CONTROLADOR SE LO PIDE AL MODELO, EL CUAL SE CONETA A LA BASE DE DATOS
+# PARA BUSCAR LAS IMAGENES, SE LO DEVUELVE AL CONTROLADOR, EL CONTROLADOR SE LOS PASA A LA PARTE DE LA VISTA, LA CUAL ARMA LA RESPUESTA
+# Y SE LA DEVUELVE AL USUARIO
+# DJANGO USA UNA ARQUITECTURA NUEVA "MVT" modelo vista template:
+# AHORA
+# cuando el usuario solicita algo a la web, lo recibe django, el cual ya tiene definida las rutas.
+# busca la ruta/url (login/cierre/inicio de sesion), la cual esta asociada a una vista
+# TEMPLATE, es una respuesta, html, lo que se le devuelve al usuario
+# INSTALANDO DJANGO
+
+# pip install Django
+# pip
+# python...
+# En la linea escribir import django
+# En la 2da linea escribir django.VERSION
+# Tupla con la version.
+# para ver todos los comando pip --help
+# SI QUERES ACTUALIZAR LA VERSION DE PYTHON ES 'pip install --upgrade Django
+# CREAR PROYECTO
+
+# django admin, es una herramienta q nos permite crear proyectos y poder gestionarlos
+# AHORA VAMOS A EJECUTAR EL SCRIPT DE DJANGO ADMIN
+# vamos a visualstudio
+# django-admin startproject + nombre
+# crea dentro de la carpeta, una carpeta con el nombre, y dntro de la nueva carpeta encontramos otra carpeta con el mismo nombre y
+# un manage.py, q nos sirve para administrar todo el proyecto entero
+# (para borrar una carpeta completa se hace rm -rf)
+# AL ARCHIVO Q SE GENERA LE PODEMOS CAMBIAR EL NOMBRE AL Q QUERAMOS, LA DE ADENTRO NO YA QUE ES UN
+# PAQUETE!!!!!
+
+# PARA SABER LA RUTA SOLO PONES PWD
+# REPASO IMPORTANTE DE CADA ARCHIVO DENTRO DE LA CARPETA DJANGO
+# manage.py es la mas importante donde vamos a estar trabajando, va a recibir los comandos, arrancar el pryecto, pararlo, etc
+# init
+# asgi y wsgi son dos archivos q necesitan p y dj, para correr una app web, levantan un servidos web en la maquina
+# setting contiene todas las config del proyecto completo.
+# urls, se maneja con una lista, si queremos agregar mas rutas las agregamos ahi
+# cerramos la terminal en la q programamos todo, y abrimos una nueva terminal
+# PARA EMPEZAR A CORRER EL PROYECTO..
+# Nos tenemos que mover dentro de la carpeta que tenga el manage.py
+#'cd + nombre de la primera carpeta'
+# ls para ver las carpetas
+# ejecutamos el archivo 'python manage.py' MUESTRA UN MENSAJE LARGO(todos los comandos de manage.py)
+# manage.py va a funcionar como el Django-admin, le pasamos determinados comandos y va a hacer lo que yo le pida con los comandos
+# LUEGO ponemos el comando 'python manage.py runserver', esto sirve para iniciar un servidor de desarrollo y dice la direccion
+# copiamos el numero, voy a mi navegador y lo pego, y podemos ver una pagina q esta funcionando con DJANGO, django funciona correctamente
+# SI QUEREMOS PARARLO simplemente ponemos 'CONTROL-C'
+
+# HASTA ACA CREAMOS EL PROYECTO
+# QUE ES EL MENSAJE EN ROJO QUE MUESTRA?
+
+# NOS PIDE Q APLIQUEMOS MIGRACIONES.
+# dbsqlite3 es nuestra base de datos, y esta vacia, y de eso se queja Django, y no puede estar vacia pq viene a checkear ahi
+# ASI QUE LE VAMOS A DAR LO QUE NECESITA
+# 'python manage.py makemigrations', dice que no hay cambios detectados
+# LUEGO EL SEGUNDO COMANDO 'python manage.py migrate', TERMINAR DE MIGRAR
+# AHORA CUANDO ABRIMOS EL SQLITE APARECEN LAS TABLAS
+# YA NO APARECE EL MENSAJE ROJO
+# PARA SALIR, CONTROL-C
+# QUIERO MOSTRAR INFORMACION A LOS USUARIOS Y RECIBIR INFORMACION
+
+# LAS VISTAS...
+# primero creamos un archivo dentro de nuestro paquete que se llame view.py, en este archivo empezamos a trabajar las vistas
+# PRIMERO VAMOS A IMPORTAR EL HTTPSRESPONSE 'from django.http import HttpResponse'
+# vamos a crear funciones
+# def primer_django(Y RECIBE UN ARGUMENTO 'REQUEST'):
+# return del httpresponse del import, y este recibe el str que queramos ()
+# ESTO ES LA VISTA!!!
+
+# LAS VISTAS ESTAN ENLAZADAS A UNA URL ESPECIFICA, TENEMOS QUE ENGANCHAR ESA FUNCION A UNA URL
+# PARA ESO...
+# vamos a mis archivos urls.py
+# Primero, debajo del import path agregamos, from + nombre del paquete que hayamos creado + .view(que es el archivo donde escribimos) + import
+# + nombre de la funcion( O UN * PARA QUE SEA LA CANT DE VECES QUE QUERAMOS)
+
+# POR DEBAJO ENCONTRAMOS LA RUTAS Y AGREGAMOS LO SIGUIENTE "path('saludo/(ruta PUEDE LLAMARSE COMO QUIERA)',primer_django(funcion))"
+
+# APARECE UN MENSAJE DE ERROR POR EL DEBUG = TRUE en el settings, si este estaria desabilitado no sabriamos q paso con la pagina
+
+# DESPUES EN LA BARRA, DONDE SE ENCUENTRA LA PAGINA, DESPUES DE LA BARRA ELEGIMOS LA RUTA
+# Http://127.0.0.1:8000/ ACAAA elegimos en nuestro caso 'SALUDO/'
+
+# APARECE EL MENSAJE!!!!
+
+# agregamos otro def para probar
+# BUENO VAS DE NUEVO A URL Y CREAS OTRO PATH CON EL NOMBRE QUE QUIERAS MAS LA DEF
+# PODEMOS PROBAR COSAS NUEVAS EN LA FUNCION CUANDO VAMOS A RETORNAR ALGO
+
+# def iniciar_sesion(request):
+# return HttpResponse("""
+#
+#Pasa tu username y tu password por WhatsApp
+
+#
+#esto es una prueba
+
+# """)
+
+# TODO ESTO OCURRE GRACIAS AL HTTPRESPONSE PQ DEVUELVE TODA LA CADENA COMO HTML
+# PASAJE DE PARÁMETROS
+# para que nuestras vstas pasen parametros
+# PATH PARAMS
+
+
+#from datetime import datetime
+# creamos def dia_hoy
+
+# def dia_hoy(request):
+# hoy = datetime.now()
+
+# respuesta = f'hoy es {hoy}'
+
+# return HttpResponse(respuesta)
+
+# VAMOS A URL Y CREAMOS PATH
+# LISTOO MUESTRA EN TIEMPO REALLL
+# PERO YO QUIERO QUE ME PASEN COSASS!!! QUE HAGOO
+
+# def dia_hoy(request,nombre):  #VA A RECIBIR UN NOMBRE TAMBIEN
+# hoy = datetime.now()
+
+# respuesta = f'hoy es {hoy}'
+
+# return HttpResponse(respuesta)
+
+# VAS A PATH Y DESPUES DE LA RUTA path('hoy/', dia_hoy) HOY va a ir lo siguiente
+#path('hoy//', dia_hoy)
+# OSEA LA PASAS LO Q ESTA EN LA FUNCION
+
+
+# Y CUANDO VAYAMOS A LA PAGINA DESPUES DE PONER /HOY/ PONEMOS NUESTRO NOMBRE
+# ejercicio
+
+# def anio_nacimiento(request, edad):edad = int(edad)anio_nac = datetime.now().year - edadreturn HttpResponse(f"Naciste en {anio_nac}")
+# PLANTILLAS DJANGO SON LAS RESPUESTAS QUE LE VAMOS A DEVOLVER AL USUARIO
+# httpsresponse por ejemplo, para un archivo chiquitito
+# si tenemos q pasar algo grande es complejo
+
+# DJANGO NOS OFRECE TEMPLATES, archivos html
+
+# 1- DENTRO DEL PROYECTO CREAMOS UNA CARPETA NUEVA dentro del 2do modulo llamada templates
+# dentro de template creamos un archivo con nombre + .html!!!!!!!
+# PONEMOS UN SIGNO ! Y LE DAMOS ENTER PARA GENERAR UNA PLANTILLA
+
+# DONDE ESTA EL TITLE le ponemos lo que queramos
+# donde dice el primer body ponemos h1 que s titulo en negrita
+# Ponemos un parrafo con
+
+# y agregamos una imagen de pexels y copiamos el link
+# img para generar la etiqueta para la imagen y donde dice src ponemos el link
+
+# UN JAVASCRIPT....
+#
+#alert('Hola mundo!')
+#
+
+
+# ESTA VA A SER NUESTRA PLANTILLA, Y SE LA VAMOS A DEVOLVER AL USUARIO
+# CREAMOS UNA NUEVA vista haciendo un def en view
+
+# HAY QUE ABRIR EL ARCHIVO
+# def vista_plantilla(request):
+# archivo = open(r siempre + (donde estamos parados hay una carpeta que se llama template, y dentro del archivo hay un .html(se agrega))
+# O COPIAMOS LA RUTA
+#SI NOS POSAMOS SOBRE OPEN PODEMOS VER COMO SE ABRE EL ARCHIVO, SIEMPRE SE ABRE EN READ CUANDO NO PONES NADA
+
+#Ahora hay que traer el template!!!
+
+#ASI QUE VAMOS ARRIBA Y PONERMOS
+
+#FROM DJANGO.TEMPLATE IMPORT TEMPLATE, CONTEXT
+
+#nos va a permitir crear una plantilla
+
+#luego en el def agregamos la plantilla
+
+# HAY QUE ABRIR EL ARCHIVO
+# def vista_plantilla(request):
+# archivo = open(./templates/ (donde estamos parados hay una carpeta que se llama template, y dentro del archivo hay un .html(se agrega))
+# plantilla = Template("lo que tiene q renderizar" le pasamos el contenido del archivo: archivo.read())
+# devuelve en un solo str todo el cont del archivo
+# 1- CERRAMOS EL ARCHIVO archivo.close()
+# 2- CREAMOS UN CONTEXTO 'contexto = Context()'
+# 3- GENERAMOS EL DOCUMENTO Q PASAMOS AL HTTPRESPONSE
+# documento = plantilla.render(Y NECESITA QUE LE PASEMOS UN OBJETO DE TIPO CONTEXT QUE ES EL DE ARRIBA)
+# (contexto)
+
+# PLANTILLA.RENDER VA A GENERAR A PARTIR DE TODO EL CONT Y EL CONTEXTO (VACIO) VA A GENERAR UN NUEVO DOC. UN OBJETO DE TIPO PLANTILLA
+# TODO ESTO LO VA A RENDERIZAR EL HTTP RESPONSE:
+# return HttpResponse(documento)
+# MODIFICAMOS LAS RUTAS PATH('proyecto/, + funcion)
+# ABRIMOS EL LINK Y PONEMOS EL NOMBRE, para que no se vea grande ponemos abajo de img style="max-width: 300px;" INVESTIGAR
+# DJANGO 18
+# MEJORAR LAS PLANTILLAS
+# HACER QUE LAS PLANTILLAS SEAN DINÁMICAS
+# Por ejemplo quiero poner un titulo en htm. que diga
+#Hola NOMBRE
+
+#y que nombre sea dinamico
+
+
+# pero no puedo cambiar el html pq es un archivo, COMO HACEMOS?
+
+# USAMOS CONTEXTO Y RENDERIZADO DE PLANTILLAS, pasarle CONTEXTO
+# tomamos la vista
+
+# def vista_plantilla(request):
+# abrimos el archivo
+#archivo = open(r'C:\Users\matia\OneDrive\Documentos\Coder\Django\Django1\Django1\templates\plantilla.html')
+
+# creamos el objeto plantilla
+#plantilla = Template(archivo.read())
+
+# cerramos el archivo para liberar recursos
+# archivo.close()
+
+# Y HACEMOS!!! diccionario con datos para la plantilla
+
+#datos = {'nombre':'Leonel','fecha':'datetime.now()','apellido':'Astore'}
+
+# creamos el contexto
+#contexto = Context()
+
+# renderizamos la plantilla para crear la respuesta
+#documento = plantilla.render(contexto)
+
+# retornamos la respuesta
+# return HttpResponse(documento)
+
+# TOMAMOS AL DICCIONARIO DE DATOS Y SE LO INDICAMOS AL CONSTRUCTOR DE LA CLASE CONTEXT
+# abrimo una terminal
+# hacemos ls
+# nos movemos con cd a django1
+# ls
+# runsever
+# VAMOS A LA PAGINA
+# NO APARECE NADA PQ NO INDICAMOS LA VARIABLE
+
+# VAMOS A PLANTILLA HTML!!!!
+# Indicamos
+# para renderizar una de las variables ponemos {{PONEMOS EL NOMBRE DE LA CLAVE DEL DICCIONARIO}}  (las variables son los datos)
+# FUNCIONA CASI CASI COMO UN (F'STRING')
+# BUCLES Y CONDICIONALES
+
+# creamos una nueva vista con def, y un nuevo archivo en templates
+# signo de !, enter y tenemos el esqueleto
+# agregamos la variable en body {{}}
+# copiamos la ruta de listado de alumnos, vamos a views y dentro del def abrimos el archivo y pegamos la ruta
+# CREAMOS EL TEMPLATE
+# cerramos archivo
+# hacemos listado_alumnos = [NOMBRES]
+# creamos diccionario con variable datos, datos = {}
+# creamos el contexto
+# creamos el doc
+#documento = plantilla.render(contexto)
+# return httpsresponse(documento)
+
+# ADEMAS DE {{}} PODEMOS USAR tags {%%} FOR
+# es muy especifico para los templates
+
+# VAMOS A TRABAJAR EN EL TEMPLATE (html)
+# sacamos {{lista_alumnos}}
+#agregamos  (lista)
+# declaramos un for
+# {% for alumno in listado_alumnos%}, listado alumnos es la lista por medio de la clave del diccionario de listado alumnos
+# alumno es la variable q necesita el for, podemos ponerle cualquier cosa
+# y ponemos un cierre {% endfor %}
+# EN MEDIO DEL FOR Y EL ENDFOR VAMOS A COLOCAR
+
+#y usamos el operador de variable {{VARIABLE}} y le pasamos la var de for
+
+# ENTRAMOS A LA PAGINA Y MUESTRA UNA LISTA DESORDENADA, si queres que esten enumerados entonces usas
+
+# PODEMOS METER UN IF
+# SI EL CURSO ES DE PYTHON IMPRIMIMOS EL TITULO VERDE, SI ES DE REACT AZUL
+
+# {% if tecnologia == "Python"%}
+#
+#Curso de {{tecnologia}}
+
+# {% elif tecnologia == "React" % }
+#
+#Curso de {{tecnologia}}
+
+# {% else %}
+
+#Curso de {{tecnologia}}
+
+
+# mas el cierre, sino no sabe dond termina la condicion
+
+# SI O SI HAY Q USAR ETIQUETA DE APERTURA Y CIERRE
+# {% endif %}!!!!!!
+# vamos a la pagina y vemos el resultado, si cambiamos tecnologia vemos como cambian los colores
+# NOTA IMPORTANTE, SI QUERES COMENTAR EN EL CODIGO PODES HACER
+# CARGADORES DE PLANTILLAS
+
+# DRY = DONT REPIT YOURSELF
+# ULTIMAMENTE REPETIMOS CODIGO
+# DJANGO NOS OFRECE LOS CARGADORES DE PLANTILLAS
+
+# Estos reciben datos minimos y ya generan el documento, hacen el renderizado y todo lo que necesitamos sin que escribamos mas de una linea de codigo
+# que tenemos que hacer?
+# AGREGAMOS UN IMPORT!!! from django.template import loader
+# Creamos una vista nueva
+# Le decimos al loader donde tiene q ir a buscar la plantilla
+# 1- Vamos al settings.py, templates, DIRS colocamos la ruta de la carpeta que contiene los templates y la pegamos
+# 2- Vamos a la vista y colocamos lo siguiente
+
+# def vista_listado_alumnos2(request):
+# Creamos el diccionario de datos
+#listado_alumnos = ["Leonel Gareis", "Agustin Russo", "Cristian Garcia", "Angelo Pettinari", "Diego Ibarra", "Santiago Ortiz", "Barbara Vivante", "Barbara Pino"]
+#datos = {"tecnologia": "react", "listado_alumnos": listado_alumnos}
+#plantilla = loader.get_template("listado_alumnos.html")
+#documento = plantilla.render(datos)
+# return HttpResponse(documento)
+# MODELOS nos permiten trabajar con datos, vamos a poder traer datos, borrarlos, modificarlos, crearlos, hacer busquedas, etc.
+# Sin saber base de datos
+# PROYECTO EN DJANGO ES todo lo que creamos hasta el momento, archivos, modulos, maange, todo
+# LOS PROYECTOS SE COMPONEN DE VARIAS APLICACIONES
+# COMO CREAMOS UNA APLICACION
+# MI PRIMER PROGRAMA MVT
+
+# nos fijamos q estamos donde dice manage.py
+# 1- Colocamos el comango python manage.py startapp + nombre
+# vamos a ver cosas distintas
+# carpeta migrations, con un paquete __init__.py
+# viwes todas las vistas de la aplicacion
+# test testea el codigo, pero no lo vamos a ver
+# models, declaramos nuestros modelos
+# apps Django sabe como comportarse con el paquete
+# admin.py lo vamos a ver mas adelante
+# __init__.py define a la carpeta como paquete
+# EMPEZAMOS CON LOS MODELOS
+# vamos al archivo models.py, y creamos una clase que herede de otra clase django y le vamos a ir declarando los campos
+# COLOCAMOS LA PALABTA CLASS + nombre del modelo q queremos crear class Familia(models.Model):
+# DENTRO VAMOS A ESCRIBIR LO QUE NECESITAMOS
+
+
+# class familia(models.Model):
+
+#nombres = models.CharField()
+#edades = models.IntegerField()
+
+# QUE LE DECIMOS A DJANGO CON ESTO?, que va a tener un modulo que se llama curso y que tiene 2 campos (nombres,edades)
+# en criollo, nombre va a ser texto(charfield), edad un numero(integerfield)
+
+# CHARFIELD DEBE TENER SI O SI  UN LIMITE, PARA Q LA BASE DE DATOS SEPA nombres = models.CharField(max_lenght = 50)
+
+# Como llevamos esto a la base de datos...
+# Vamos a settings.py
+# VAMOS A LA PARTE DONDE DICE INSTALLED APPS, estas son las apps disponibles dentro del proyecto, SON PROPIAS DE DJANGO
+# PERO LA QUE CREE NO ES PROPIA DE DJANGO LA CREE YO
+# AGREGAS EL NOMBRE DE LA APLICACION, EN MI CASO 'MVT_entrega'
+# lo siguiente es checkear 'manage.py check + nombre de la app'
+
+# AHORA TENEMOS Q DECIRLE A DJANGO QUE CREE LOS ARCHIVOS DE MIGRACIONES A LA BASE DE DATOS!!!:
+# usamos el codigo 'python manage.py makemigrations + nombre de LA APP'
+# VA A APARECER ESTO:
+# Migrations for 'MVT_entrega':
+# MVT_entrega\migrations\0001_initial.py
+# - Create model familia1
+
+# APARECEN NUEVOS ARCHIVOS DENTRO DE MIGRATIONS, INITIAL.py, ESTO ES... el archivo, la operacion que debe hacer django con nuestro modelo
+# en la base de datos...
+
+# entramos a db.sqlite y vemos las tablas, siguen siendo las misma, que tenemos q hacer ahora?, llevar las migraciones a las bases de datos:
+# 'python manage.py migrate', refrescas la base de datos y aparece una nueva tabla
+# tenemos nuestra tabla creada
+# DB BROWSER, SIRVE PARA MODIFICAR Y CREAR EN LA TABLA, SOLO FUNCIONA PARA SQ.LITE!!!
+
+# LO DESCARGAMOS! , tenemos q iniciarlo
+# BUENO CUANDO YA LO TENEMOS, ESCRIBIMOS EN LAS COLUMNAS
+# CREAMOS UNA COLUMNA Y ESCRIBIMOS LOS DATOS
+# Y LE DAMOS A 'WRITE CHANGES'
+# vamos avsc y refrescamos la tabla y vamos a el archivo nuestro, y se encuentran en la base de datos lo q escribimos
+
+# ESTO SIRVEN PARA QUE LOS DATOS NO ESTEN EN VARIABLES Y ARCHIVOS, SINO QUE ESTEN EN UNA BASE DE DATOS DE FORMA PERSISTENTE
+# OTRA FORMA DE AGREGAR DATOS A LA BASE DE DATOS, ES TRABAJAR CON EL CODIGO...
+#'python manage.py shell'
+# MODO INTERACTIVO...
+# ESO PERMITE TRAER ARCHIVOS Y FUNCIONES QUE ESTEN DENTRO DE LOS MISMOS, por ejemplo los modelos...
+# 'From + 'nombre de tu archivo de app'.models + import 'nombre de la clase q quieras importar' en mi caso familia1
+# y asi tenes disponible la clase...
+# AHORA Vamos a crear una clase en la terminal: ej:
+# en mi caso: Familia = familia1(nombre = 'Jose A.', Edad = 22)
+# DAMOS ENTER
+# podemos acceder a sus campos: Familia.nombre por ej
+
+# AHORA VAMOS A GUARDAR ESO EN LA BASE DE DATOS
+# COMO HACEMOS PARA GUARDAR ALGO EN LA BASE DE DATOS...
+# Familia.save() toma los atributos y los guarda en el DB browser
+
+
+# ESTAS SON DOS FORMAS DE GUARDAR!!!, mirar ultimos 10 minutos de la clase para comprender mejor!!!
+
+# PARA LA PARTE DE LA WEB vamos a las viwes.py de la app
+# COLOCAMOS:
+# En mi caso es asi!
+
+#from django.http import HttpResponse
+#from MVT_entrega.models import familia1
+
+# Create your views here.
+
+# def listado_de_familia(request):
+#listado = familia1.objects.all()
+#Vista = ""
+# for FAMILIA in listado:
+#Vista += FAMILIA.nombre + " | "
+
+# return HttpResponse
+
+# ESTO LO METEMOS EN EL URL DE TEMPLATES
+# AGREGAMOS ARRIBA from 'nombre de tu app'.views import *
