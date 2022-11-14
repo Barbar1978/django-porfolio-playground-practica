@@ -1,5 +1,6 @@
 from django.db import models
-#create your models here 
+
+
 class Curso(models.Model):
 
     nombre = models.CharField(max_length=50)
